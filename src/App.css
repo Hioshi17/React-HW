@@ -1,40 +1,45 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #eee;
+/* body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #111;
   margin: 0;
   padding: 0;
+  color: #fff;
 }
 
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 100px auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .container__comments {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .container__form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .container__form label {
   font-weight: bold;
+  color: #fff;
 }
 
-.form__input .form__textarea {
+.form__input,
+.form__textarea {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 100px solid #444;
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
+  background-color: #555;
+  color: #fff;
 }
 
 .form__button {
@@ -44,6 +49,7 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .form__button:hover {
@@ -51,14 +57,13 @@ body {
 }
 
 .comment {
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   margin: 10px 0;
   padding: 10px;
   border-radius: 4px;
-  margin-bottom: 10px;
-  background-color: #eee;
+  background-color: #555;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .comment__avatar {
@@ -66,6 +71,7 @@ body {
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+  background-color: #888;
 }
 
 .comment__content {
@@ -74,13 +80,16 @@ body {
 
 .comment__author {
   font-size: 1.2em;
+  color: #fff;
 }
 
-.comment__text .comment__timestamp {
+.comment__text,
+.comment__timestamp {
   margin: 5px 0;
+  color: #ccc;
 }
 
 .comment__my-comment {
   color: #eee;
   font-size: 0.9em;
-}
+} */

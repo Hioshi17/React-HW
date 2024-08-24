@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { initialComments } from "../src/components/initialComments.js";
+import "./App.css";
 
-export default function App() {
-  const [comments, setComments] = useState(initialComments);
+const CommentForm = ({ onAddComment }) => {
   const [newComment, setNewComment] = useState({
     author: "",
     content: "",
@@ -20,7 +21,7 @@ export default function App() {
       ...newComment,
       timestamp: Date.now(),
     };
-    setComments([...comments, newCommentWithTimestamp]);
+    onAddComment(newCommentWithTimestamp);
     setNewComment({
       author: "",
       content: "",
@@ -30,48 +31,52 @@ export default function App() {
   };
 
   return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>
+          Автор:
+          <input
+            type="text"
+            name="author"
+            value={newComment.author}
+            onChange={handleInputChange}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Содержание:
+          <textarea
+            name="content"
+            value={newComment.content}
+            onChange={handleInputChange}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Мой комментарий:
+          <input
+            type="checkbox"
+            name="isMyComment"
+            checked={newComment.isMyComment}
+            onChange={(e) =>
+              setNewComment({
+                ...newComment,
+                isMyComment: e.target.checked,
+              })
+            }
+          />
+        </label>
+      </div>
+      <button type="submit">Добавить комментарий</button>
+    </form>
+  );
+};
+
+const CommentList = ({ comments }) => {
+  return (
     <div>
-      <h1 className="">Comments</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Author:
-            <input
-              type="text"
-              name="author"
-              value={newComment.author}
-              onChange={handleInputChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Content:
-            <textarea
-              name="content"
-              value={newComment.content}
-              onChange={handleInputChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Is My Comment:
-            <input
-              type="checkbox"
-              name="isMyComment"
-              checked={newComment.isMyComment}
-              onChange={(e) =>
-                setNewComment({
-                  ...newComment,
-                  isMyComment: e.target.checked,
-                })
-              }
-            />
-          </label>
-        </div>
-        <button type="submit">Add Comment</button>
-      </form>
       {comments.map((comment, index) => (
         <div
           key={index}
@@ -86,10 +91,26 @@ export default function App() {
             <strong>{comment.author}</strong>
             <p>{new Date(comment.timestamp).toLocaleString()}</p>
             <p>{comment.content}</p>
-            {comment.isMyComment && <span>My Comment</span>}
+            {comment.isMyComment && <span>Мой комментарий</span>}
           </div>
         </div>
       ))}
+    </div>
+  );
+};
+
+export default function App() {
+  const [comments, setComments] = useState(initialComments);
+
+  const handleAddComment = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+
+  return (
+    <div className="App">
+      <h1>Комментарии</h1>
+      <CommentForm onAddComment={handleAddComment} />
+      <CommentList comments={comments} />
     </div>
   );
 }
